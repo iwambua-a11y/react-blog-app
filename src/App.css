@@ -1,0 +1,48 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
+.app-shell.light { background-color: #f7f9fa; color: #1f2937; min-height: 100vh; display: flex; flex-direction: column; }
+.app-shell.dark { background-color: #0f172a; color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; }
+.navbar-container { background: linear-gradient(90deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%); color: #ffffff; padding: 1.25rem 2rem; }
+.navbar-content { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.navbar-title a { font-size: 1.7rem; font-weight: 700; color: #ffffff; text-decoration: none; }
+.navbar-nav { display: flex; align-items: center; gap: 1.5rem; }
+.navbar-links { display: flex; list-style: none; gap: 1.25rem; }
+.navbar-links a { color: #ffffff; text-decoration: none; font-weight: 500; }
+.theme-toggle-btn { background-color: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.35); color: #ffffff; padding: 0.35rem 0.75rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+.content-area { flex: 1; max-width: 820px; width: 92%; margin: 2rem auto; }
+.page-container { display: flex; flex-direction: column; gap: 1.5rem; }
+.page-heading { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
+.posts-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+.post-card { border-radius: 8px; padding: 1.75rem; }
+.app-shell.light .post-card { background: #ffffff; border: 1px solid #e5e7eb; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+.app-shell.dark .post-card { background: #1e293b; border: 1px solid #334155; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); }
+.post-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; }
+.post-title a { text-decoration: none; color: inherit; }
+.post-meta { font-size: 0.85rem; margin-bottom: 0.85rem; }
+.app-shell.light .post-meta { color: #6b7280; }
+.app-shell.dark .post-meta { color: #94a3b8; }
+.post-body { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem; }
+.read-more-link { color: #4f46e5; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+.back-link { display: inline-block; color: #4f46e5; text-decoration: none; font-weight: 600; margin-bottom: 0.5rem; }
+.comments-section { margin-top: 2rem; border-top: 1px solid #e5e7eb; padding-top: 1.5rem; }
+.app-shell.dark .comments-section { border-top-color: #334155; }
+.comment-form { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.75rem; }
+.form-input, .form-textarea { width: 100%; padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.9rem; font-family: inherit; border: 1px solid #d1d5db; }
+.app-shell.dark .form-input, .app-shell.dark .form-textarea { background-color: #0f172a; border-color: #475569; color: #f1f5f9; }
+.submit-btn { background-color: #f59e0b; color: #ffffff; border: none; border-radius: 20px; padding: 0.45rem 1.25rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; align-self: flex-start; }
+.existing-comments { margin-top: 1.25rem; }
+.comments-label { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; }
+.no-comments-msg { font-style: italic; font-size: 0.9rem; color: #9ca3af; }
+.comments-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.comment-bubble { padding: 0.75rem 1rem; border-radius: 6px; }
+.app-shell.light .comment-bubble { background-color: #f1f5f9; }
+.app-shell.dark .comment-bubble { background-color: #0f172a; }
+.comment-author { font-size: 0.85rem; margin-bottom: 0.25rem; }
+.comment-body { font-size: 0.9rem; }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+.form-group label { font-size: 0.85rem; font-weight: 600; }
+.contact-subtitle { font-size: 0.92rem; color: #6b7280; }
+.app-shell.dark .contact-subtitle { color: #94a3b8; }
+.success-banner { background-color: #dcfce7; color: #166534; padding: 0.85rem; border-radius: 6px; margin-top: 1rem; font-size: 0.9rem; }
+.footer-bar { background-color: #111827; color: #9ca3af; text-align: center; padding: 1.25rem; font-size: 0.85rem; margin-top: auto; }
