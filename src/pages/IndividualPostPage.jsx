@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import CommentForm from '../components/CommentForm';
+import { useAuth } from '../context/AuthContext';
 
 export default function IndividualPostPage() {
   const { postId } = useParams();
+  const { isAuthenticated } = useAuth();
 
   const [post, setPost] = useState(null);
   const [author, setAuthor] = useState(null);
@@ -15,7 +17,6 @@ export default function IndividualPostPage() {
     setLoading(true);
     setError(null);
 
-    // 1. Fetch individual post and comments in parallel
     Promise.all([
       fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`).then((res) => {
         if (!res.ok) throw new Error('Post not found');
@@ -29,8 +30,6 @@ export default function IndividualPostPage() {
       .then(([postData, commentsData]) => {
         setPost(postData);
         setComments(commentsData);
-
-        // 2. Fetch the user associated with the post using postData.userId
         return fetch(`https://jsonplaceholder.typicode.com/users/${postData.userId}`);
       })
       .then((res) => {
@@ -65,14 +64,14 @@ export default function IndividualPostPage() {
       <div className="page-container">
         <h2>Post Not Found</h2>
         <p>{error || 'The post you are looking for does not exist.'}</p>
-        <Link to="/" className="back-link">&larr; Back to all posts</Link>
+        <Link to="/posts" className="back-link">&larr; Back to all posts</Link>
       </div>
     );
   }
 
   return (
     <div className="page-container">
-      <Link to="/" className="back-link">&larr; Back to all posts</Link>
+      <Link to="/posts" className="back-link">&larr; Back to all posts</Link>
       <article className="post-card detail-card">
         <h2 className="post-title">{post.title}</h2>
         {author && (
@@ -88,7 +87,21 @@ export default function IndividualPostPage() {
         <section className="comments-section">
           <h3 className="section-heading">Comments</h3>
 
-          <CommentForm postId={postId} onAddComment={handleAddComment} />
+          {isAuthenticated ? (
+            <CommentForm postId={postId} onAddComment={handleAddComment} />
+          ) : (
+            <div
+              className="comment-form"
+              style={{ textAlign: 'center', padding: '1.25rem', marginBottom: '1.5rem' }}
+            >
+              <p style={{ marginBottom: '0.75rem' }}>
+                Please log in to leave a comment on this post.
+              </p>
+              <Link to="/login" className="submit-btn" style={{ textDecoration: 'none' }}>
+                Log In to Comment
+              </Link>
+            </div>
+          )}
 
           <div className="existing-comments">
             <h4 className="comments-label">Discussion</h4>

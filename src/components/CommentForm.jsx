@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 export default function CommentForm({ postId, onAddComment }) {
-  const [name, setName] = useState('');
+  const { user } = useAuth();
   const [commentText, setCommentText] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !commentText.trim()) return;
+    if (!commentText.trim() || !user) return;
 
     setSubmitting(true);
     setSubmitError(null);
 
     const payload = {
-      name: name.trim(),
+      name: user.username,
       body: commentText.trim(),
       postId: Number(postId)
     };
@@ -38,7 +39,6 @@ export default function CommentForm({ postId, onAddComment }) {
           name: payload.name,
           body: payload.body
         });
-        setName('');
         setCommentText('');
         setSubmitting(false);
       })
@@ -51,23 +51,14 @@ export default function CommentForm({ postId, onAddComment }) {
 
   return (
     <form onSubmit={handleSubmit} className="comment-form">
-      <h4>Leave a Comment</h4>
+      <h4>Leave a Comment as {user?.username}</h4>
       {submitError && (
         <p style={{ color: '#e53e3e', marginBottom: '0.75rem' }}>{submitError}</p>
       )}
-      <input
-        type="text"
-        className="form-input"
-        placeholder="Your Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        disabled={submitting}
-        required
-      />
       <textarea
         rows="3"
         className="form-textarea"
-        placeholder="Your Comment"
+        placeholder="Write your comment here..."
         value={commentText}
         onChange={(e) => setCommentText(e.target.value)}
         disabled={submitting}
